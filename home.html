@@ -24,17 +24,16 @@ body {
     padding: 18px 20px;
 }
 
-/* LOGO META */
+/* LOGO */
 .logo {
     background: #5b74ff;
     color: #fff;
     padding: 6px 18px;
     border-radius: 20px;
     font-weight: bold;
-    font-size: 14px;
 }
 
-/* LADO DIREITO */
+/* DIREITA */
 .right {
     display: flex;
     align-items: center;
@@ -52,9 +51,10 @@ body {
 
 .progress span {
     display: block;
-    width: 55%;
+    width: 0%;
     height: 100%;
     background: linear-gradient(90deg, #001aff, #00aaff);
+    transition: width 0.3s;
 }
 
 /* SALDO */
@@ -64,7 +64,6 @@ body {
     padding: 6px 12px;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 14px;
 }
 
 /* CONTEÚDO */
@@ -81,6 +80,12 @@ body {
     height: 170px;
     border: 2px solid #222;
     border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.box:active {
+    transform: scale(0.98);
 }
 </style>
 </head>
@@ -93,17 +98,44 @@ body {
 
     <div class="right">
         <div class="progress">
-            <span></span>
+            <span id="progressBar"></span>
         </div>
-        <div class="balance">$ 0</div>
+        <div class="balance">$ <span id="saldo">0</span></div>
     </div>
 </div>
 
 <!-- CAIXAS -->
 <div class="container">
-    <div class="box"></div>
-    <div class="box"></div>
+    <div class="box" onclick="ganharSaldo()"></div>
+    <div class="box" onclick="ganharSaldo()"></div>
 </div>
+
+<script>
+let saldo = localStorage.getItem("saldo")
+    ? parseInt(localStorage.getItem("saldo"))
+    : 0;
+
+const saldoEl = document.getElementById("saldo");
+const progressBar = document.getElementById("progressBar");
+
+function atualizarTela() {
+    saldoEl.innerText = saldo;
+
+    // cada $1 = 10% da barra (máx 100%)
+    let progresso = Math.min(saldo * 10, 100);
+    progressBar.style.width = progresso + "%";
+}
+
+function ganharSaldo() {
+    saldo += 1;
+    localStorage.setItem("saldo", saldo);
+    atualizarTela();
+}
+
+// carregar saldo ao abrir
+atualizarTela();
+</script>
 
 </body>
 </html>
+
