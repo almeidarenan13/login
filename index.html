@@ -1,44 +1,144 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Meta — Home</title>
-  <style>
-    :root{--blue:#4B8BF5;--muted:#777}
-    *{box-sizing:border-box} html,body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fff;color:#111}
-    .topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #f0f0f0}
-    .logo{background:var(--blue);color:#fff;padding:8px 14px;border-radius:20px;font-weight:700}
-    .preview{max-width:520px;margin:40px auto;text-align:center}
-    .preview .small-card{height:80px;border-radius:18px;border:2px dashed #e6e6e6;display:flex;align-items:center;justify-content:center;color:#bbb;margin:12px 0}
-    .btn{padding:8px 14px;border-radius:8px;border:0;cursor:pointer;background:#007bff;color:#fff;font-weight:600}
-  </style>
+    <meta charset="UTF-8">
+    <title>MetaQuest - Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 360px;
+            text-align: center;
+        }
+
+        .logo {
+            background: #5b74ff;
+            color: #fff;
+            font-size: 42px;
+            font-weight: bold;
+            padding: 18px 0;
+            border-radius: 40px;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 2px solid #5b74ff;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .input-group input::placeholder {
+            color: #5b74ff;
+            text-transform: uppercase;
+        }
+
+        .btn-login {
+            width: 130px;
+            padding: 14px;
+            border-radius: 30px;
+            border: none;
+            background: #5b74ff;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto 30px;
+            display: block;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+        }
+
+        .profiles {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .profile {
+            width: 100px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 10px 5px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .profile img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
+
 <body>
-  <header class="topbar">
+
+<div class="container">
     <div class="logo">META</div>
-    <div style="display:flex;gap:12px;align-items:center">
-      <div style="background:#eaf1ff;padding:6px 10px;border-radius:12px">Progresso</div>
-      <div style="background:#003f8a;color:#fff;padding:6px 10px;border-radius:8px">$ 0</div>
-      <button id="loginBtn" class="btn">Login</button>
+
+    <div class="input-group">
+        <input type="email" id="email" placeholder="Email">
     </div>
-  </header>
 
-  <main>
-    <section class="preview">
-      <h2>Bem-vindo</h2>
-      <p>Clique em Login para ir à tela de cartões.</p>
-      <div class="small-card">Preview 1</div>
-      <div class="small-card">Preview 2</div>
-    </section>
-  </main>
+    <div class="input-group">
+        <input type="password" id="senha" placeholder="Senha">
+    </div>
 
-  <script>
-    // Aqui fazemos um redirecionamento explícito para dashboard.html
-    document.getElementById('loginBtn').addEventListener('click', function(){
-      // Se preferir manter em mesmo arquivo, use navigation in-page. Aqui vamos abrir outra página:
-      window.location.href = 'dashboard.html';
-    });
-  </script>
+    <button class="btn-login" onclick="login()">LOGIN</button>
+
+    <div class="profiles">
+        <div class="profile">
+            <img src="https://via.placeholder.com/28">
+            JOÃO RENATO
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/28">
+            JOÃO RENATO
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/28">
+            JOÃO RENATO
+        </div>
+    </div>
+</div>
+
+<script>
+    function login() {
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
+
+        if (email === "" || senha === "") {
+            alert("Preencha todos os campos");
+            return;
+        }
+
+        // redireciona para a página home
+        window.location.href = "home.html";
+    }
+</script>
+
 </body>
 </html>
