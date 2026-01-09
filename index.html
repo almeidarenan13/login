@@ -3,169 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Meta — Demo (Login → Cartões)</title>
+  <title>Meta — Home</title>
   <style>
-    :root{
-      --blue-1:#4B8BF5; --blue-2:#2f71ff; --dark:#222; --bg:#fff; --muted:#777;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;background:#ffffff;color:#111}
-    .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #f0f0f0}
-    .logo{background:var(--blue-1);color:#fff;padding:8px 14px;border-radius:20px;font-weight:700}
-    .status{display:flex;align-items:center;gap:10px}
-    .progress-wrap{width:180px;height:12px;border-radius:12px;overflow:hidden;background:#eaf1ff;position:relative}
-    .progress-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--blue-2),#b6d2ff);width:45%}
-    .coin{background:linear-gradient(180deg,#003f8a,#0057c9);color:#fff;padding:6px 10px;border-radius:10px;font-weight:700}
-    .btn{padding:8px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
-    .btn.primary{background:#007bff;color:#fff}
-    .btn.ghost{background:transparent;border:2px solid #ddd;padding:6px 12px}
-
-    .container{max-width:920px;margin:30px auto;padding:0 16px}
-    .card{background:transparent}
-
-    /* Login view */
-    #loginView{max-width:520px;margin:40px auto}
-    .preview{display:flex;flex-direction:column;gap:14px;margin-top:18px}
-    .preview .small-card{height:80px;border-radius:18px;border:2px dashed #e6e6e6;display:flex;align-items:center;justify-content:center;color:#bbb}
-
-    /* Dashboard view (os dois retângulos arredondados) */
-    #dashboardView{display:none;padding-top:18px}
-    .cards{max-width:420px;margin:40px auto;display:flex;flex-direction:column;gap:40px}
-    .big-card{height:140px;border-radius:22px;border:3px solid var(--dark);background:var(--bg)}
-
-    /* util */
-    .hidden{display:none!important}
-    .center{text-align:center}
-    @media (max-width:480px){
-      .progress-wrap{width:120px}
-      .big-card{height:120px}
-    }
+    :root{--blue:#4B8BF5;--muted:#777}
+    *{box-sizing:border-box} html,body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fff;color:#111}
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #f0f0f0}
+    .logo{background:var(--blue);color:#fff;padding:8px 14px;border-radius:20px;font-weight:700}
+    .preview{max-width:520px;margin:40px auto;text-align:center}
+    .preview .small-card{height:80px;border-radius:18px;border:2px dashed #e6e6e6;display:flex;align-items:center;justify-content:center;color:#bbb;margin:12px 0}
+    .btn{padding:8px 14px;border-radius:8px;border:0;cursor:pointer;background:#007bff;color:#fff;font-weight:600}
   </style>
 </head>
 <body>
-  <header class="topbar" role="banner">
-    <div style="display:flex;align-items:center;gap:12px">
-      <div class="logo">META</div>
-      <div class="muted" style="color:#666;font-size:14px">Demo</div>
-    </div>
-
-    <div style="display:flex;align-items:center;gap:12px">
-      <div class="status" aria-hidden="true">
-        <div class="progress-wrap" title="Progresso">
-          <div class="progress-fill" id="headerProgress"></div>
-        </div>
-        <div class="coin" id="headerCoin">$ 0</div>
-      </div>
-
-      <button id="headerLogin" class="btn primary">Login</button>
+  <header class="topbar">
+    <div class="logo">META</div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <div style="background:#eaf1ff;padding:6px 10px;border-radius:12px">Progresso</div>
+      <div style="background:#003f8a;color:#fff;padding:6px 10px;border-radius:8px">$ 0</div>
+      <button id="loginBtn" class="btn">Login</button>
     </div>
   </header>
 
-  <main class="container" id="main">
-    <!-- VIEW: Login -->
-    <section id="loginView" aria-labelledby="loginTitle">
-      <h2 id="loginTitle">Bem-vindo — Faça login</h2>
-      <p class="center">Clique em <strong>Login</strong> para ver a página com os cartões.</p>
-
-      <div class="preview card">
-        <div class="small-card">Preview 1</div>
-        <div class="small-card">Preview 2</div>
-      </div>
-    </section>
-
-    <!-- VIEW: Dashboard (Target) -->
-    <section id="dashboardView" aria-labelledby="dashTitle">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="logo" style="padding:6px 10px;font-size:16px">META</div>
-          <div style="color:#666">Área do Usuário</div>
-        </div>
-
-        <div style="display:flex;align-items:center;gap:10px">
-          <div class="status" aria-hidden="true">
-            <div class="progress-wrap" style="width:140px;height:10px">
-              <div class="progress-fill" id="dashProgress" style="width:45%"></div>
-            </div>
-            <div class="coin" id="dashCoin">$ 0</div>
-          </div>
-          <button id="logoutBtn" class="btn ghost">Sair</button>
-        </div>
-      </div>
-
-      <div class="cards">
-        <div class="big-card" role="region" aria-label="Cartão 1"></div>
-        <div class="big-card" role="region" aria-label="Cartão 2"></div>
-      </div>
+  <main>
+    <section class="preview">
+      <h2>Bem-vindo</h2>
+      <p>Clique em Login para ir à tela de cartões.</p>
+      <div class="small-card">Preview 1</div>
+      <div class="small-card">Preview 2</div>
     </section>
   </main>
 
   <script>
-    (function(){
-      // Elementos
-      const headerLogin = document.getElementById('headerLogin');
-      const loginView = document.getElementById('loginView');
-      const dashboardView = document.getElementById('dashboardView');
-      const logoutBtn = document.getElementById('logoutBtn');
-      const headerCoin = document.getElementById('headerCoin');
-      const dashCoin = document.getElementById('dashCoin');
-      const headerProgress = document.getElementById('headerProgress');
-      const dashProgress = document.getElementById('dashProgress');
-
-      // Funções de navegação simples (sem alterar arquivos)
-      function goToDashboard(){
-        loginView.style.display = 'none';
-        dashboardView.style.display = 'block';
-        headerLogin.textContent = 'Área';
-        // sincronizar visuais
-        dashCoin.textContent = headerCoin.textContent;
-        dashProgress.style.width = headerProgress.style.width;
-        // ajustar hash para permitir recarregar direto
-        history.replaceState(null, '', '#dashboard');
-      }
-
-      function goToLogin(){
-        dashboardView.style.display = 'none';
-        loginView.style.display = 'block';
-        headerLogin.textContent = 'Login';
-        history.replaceState(null, '', '#login');
-      }
-
-      // Evento do botão Login no header
-      headerLogin.addEventListener('click', function(){
-        // se já estiver no dashboard, rola para ele; caso contrário, vai para dashboard
-        if (dashboardView.style.display === 'block') {
-          // já está no dashboard => rola para cima
-          window.scrollTo({top:0,behavior:'smooth'});
-        } else {
-          goToDashboard();
-        }
-      });
-
-      // logout
-      logoutBtn.addEventListener('click', function(){
-        goToLogin();
-      });
-
-      // Inicialização: se URL tem #dashboard, abrir dashboard; caso contrário login
-      if (location.hash === '#dashboard') {
-        goToDashboard();
-      } else {
-        goToLogin();
-      }
-
-      // Pequena proteção: se usuário abriu arquivo localmente e algo falhar, log no console
-      try {
-        // teste rápido: garantir que elementos existam
-        if (!headerLogin || !loginView || !dashboardView) {
-          console.error('Elementos principais não encontrados — verifique o HTML.');
-        }
-      } catch(e) {
-        console.error(e);
-      }
-
-      // Expor para debug
-      window.metaNav = { goToDashboard, goToLogin };
-    })();
+    // Aqui fazemos um redirecionamento explícito para dashboard.html
+    document.getElementById('loginBtn').addEventListener('click', function(){
+      // Se preferir manter em mesmo arquivo, use navigation in-page. Aqui vamos abrir outra página:
+      window.location.href = 'dashboard.html';
+    });
   </script>
 </body>
 </html>
