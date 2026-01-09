@@ -25,34 +25,33 @@
             width: 320px;
             padding: 25px;
             border: 2px solid #ddd;
-            border-radius: 15px;
+            border-radius: 18px;
+            text-align: center;
         }
 
         .logo {
-            text-align: center;
-            background: #4b5cff;
-            color: #fff;
-            padding: 8px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 20px auto;
         }
 
         input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 8px;
+            margin-bottom: 12px;
+            border-radius: 10px;
             border: 1px solid #ccc;
         }
 
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background: #4b5cff;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
             cursor: pointer;
         }
@@ -60,35 +59,55 @@
         button:hover {
             opacity: 0.9;
         }
+
+        .msg {
+            margin-top: 12px;
+            font-size: 14px;
+            color: red;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="login-box">
-        <div class="logo">META</div>
+<div class="login-box">
 
-        <input type="email" id="email" placeholder="E-mail">
-        <input type="password" id="senha" placeholder="Senha">
+    <!-- LOGO -->
+    <img src="logo.png" alt="MetaQuest" class="logo">
 
-        <button onclick="login()">Login</button>
-    </div>
+    <!-- INPUTS -->
+    <input type="email" id="email" placeholder="E-mail">
+    <input type="password" id="senha" placeholder="Senha">
 
-    <script>
-        function login() {
-            const email = document.getElementById("email").value;
-            const senha = document.getElementById("senha").value;
+    <!-- BOTÃO -->
+    <button onclick="login()">Login</button>
 
-            if (email === "" || senha === "") {
-                alert("Preencha todos os campos");
-                return;
-            }
+    <!-- MENSAGEM -->
+    <div class="msg" id="msg"></div>
+</div>
 
-            // REDIRECIONA PARA A PÁGINA 2
-            window.location.href = "home.html";
+<script>
+    // LOGIN PADRÃO
+    const EMAIL_PADRAO = "admin@metaquest.com";
+    const SENHA_PADRAO = "123456";
+
+    function login() {
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
+        const msg = document.getElementById("msg");
+
+        if (email === "" || senha === "") {
+            msg.innerText = "Preencha todos os campos.";
+            return;
         }
-    </script>
+
+        if (email === EMAIL_PADRAO && senha === SENHA_PADRAO) {
+            window.location.href = "home.html";
+        } else {
+            msg.innerText = "E-mail ou senha incorretos.";
+        }
+    }
+</script>
 
 </body>
 </html>
-
