@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Meta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 360px;
+            text-align: center;
+        }
+
+        .logo {
+            background: #5b74ff;
+            color: #fff;
+            font-size: 42px;
+            font-weight: bold;
+            padding: 18px 0;
+            border-radius: 40px;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 2px solid #5b74ff;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .input-group input::placeholder {
+            color: #5b74ff;
+            text-transform: uppercase;
+        }
+
+        .btn-login {
+            width: 120px;
+            padding: 12px;
+            border-radius: 30px;
+            border: none;
+            background: #5b74ff;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px auto;
+            display: block;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+        }
+
+        .message {
+            margin: 10px 0 30px;
+            font-size: 14px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .profiles {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .profile {
+            width: 100px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 10px 5px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .profile img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">META</div>
+
+    <div class="input-group">
+        <input type="email" id="email" placeholder="Email">
+    </div>
+
+    <div class="input-group">
+        <input type="password" id="senha" placeholder="Senha">
+    </div>
+
+    <button class="btn-login" onclick="login()">LOGIN</button>
+
+    <div id="message" class="message"></div>
+
+    <div class="profiles">
+        <div class="profile">
+            <img src="https://via.placeholder.com/28">
+            JOÃO RENATO
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/28">
+            JOÃO RENATO
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/28">
+            JOÃO RENATO
+        </div>
+    </div>
+</div>
+
+<script>
+    function login() {
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
+        const message = document.getElementById("message");
+
+        message.innerHTML = "";
+        message.className = "message";
+
+        if (email === "" || senha === "") {
+            message.innerHTML = "Preencha todos os campos.";
+            message.classList.add("error");
+            return;
+        }
+
+        if (!email.includes("@")) {
+            message.innerHTML = "Digite um e-mail válido.";
+            message.classList.add("error");
+            return;
+        }
+
+        message.innerHTML = "Login realizado com sucesso!";
+        message.classList.add("success");
+    }
+</script>
+
+</body>
+</html>
