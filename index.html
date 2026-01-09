@@ -87,7 +87,7 @@
 </div>
 
 <script>
-    // LOGIN PADRÃO
+    // LOGIN PADRÃO (ÚNICO QUE FUNCIONA)
     const EMAIL_PADRAO = "admin@metaquest.com";
     const SENHA_PADRAO = "123456";
 
@@ -95,6 +95,8 @@
         const email = document.getElementById("email").value;
         const senha = document.getElementById("senha").value;
         const msg = document.getElementById("msg");
+
+        msg.innerText = "";
 
         if (email === "" || senha === "") {
             msg.innerText = "Preencha todos os campos.";
