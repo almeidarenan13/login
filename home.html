@@ -13,7 +13,7 @@
 }
 
 body {
-    background: #fff;
+    background: #ffffff;
 }
 
 /* TOPO */
@@ -21,59 +21,66 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 18px 20px;
 }
 
-/* LOGO */
+/* LOGO META */
 .logo {
     background: #5b74ff;
     color: #fff;
     padding: 6px 18px;
     border-radius: 20px;
     font-weight: bold;
+    font-size: 14px;
 }
 
-/* SALDO + BARRA */
+/* LADO DIREITO */
 .right {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
+/* BARRA */
 .progress {
-    width: 120px;
-    height: 8px;
-    background: #dcdcdc;
-    border-radius: 10px;
+    width: 140px;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 20px;
     overflow: hidden;
 }
 
 .progress span {
     display: block;
-    width: 45%;
+    width: 55%;
     height: 100%;
     background: linear-gradient(90deg, #001aff, #00aaff);
 }
 
+/* SALDO */
 .balance {
     background: #001aff;
     color: #fff;
-    padding: 6px 10px;
+    padding: 6px 12px;
     border-radius: 8px;
     font-weight: bold;
+    font-size: 14px;
 }
 
 /* CONTEÚDO */
 .container {
-    padding: 25px 20px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
 }
 
+/* CAIXAS */
 .box {
     width: 100%;
     height: 170px;
     border: 2px solid #222;
-    border-radius: 22px;
-    margin-bottom: 30px;
+    border-radius: 25px;
 }
 </style>
 </head>
@@ -88,7 +95,7 @@ body {
         <div class="progress">
             <span></span>
         </div>
-        <div class="balance">💰 $0</div>
+        <div class="balance">$ 0</div>
     </div>
 </div>
 
