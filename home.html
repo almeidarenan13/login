@@ -91,7 +91,6 @@
 
 <div class="feed">
 
-    <!-- VIDEO 1 -->
     <div class="card">
         <video src="video1.mp4" controls onended="showActions(this)"></video>
         <div class="actions">
@@ -100,9 +99,40 @@
         </div>
     </div>
 
-    <!-- VIDEO 2 -->
     <div class="card">
         <video src="video2.mp4" controls onended="showActions(this)"></video>
+        <div class="actions">
+            <button class="like" onclick="like(this)">Curtir 👍</button>
+            <button class="dislike" onclick="dislike(this)">Não curtir 👎</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <video src="video3.mp4" controls onended="showActions(this)"></video>
+        <div class="actions">
+            <button class="like" onclick="like(this)">Curtir 👍</button>
+            <button class="dislike" onclick="dislike(this)">Não curtir 👎</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <video src="video4.mp4" controls onended="showActions(this)"></video>
+        <div class="actions">
+            <button class="like" onclick="like(this)">Curtir 👍</button>
+            <button class="dislike" onclick="dislike(this)">Não curtir 👎</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <video src="video5.mp4" controls onended="showActions(this)"></video>
+        <div class="actions">
+            <button class="like" onclick="like(this)">Curtir 👍</button>
+            <button class="dislike" onclick="dislike(this)">Não curtir 👎</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <video src="video6.mp4" controls onended="showActions(this)"></video>
         <div class="actions">
             <button class="like" onclick="like(this)">Curtir 👍</button>
             <button class="dislike" onclick="dislike(this)">Não curtir 👎</button>
@@ -112,7 +142,6 @@
 </div>
 
 <script>
-    // PROTEÇÃO DE LOGIN
     if (!localStorage.getItem("logado")) {
         window.location.href = "index.html";
     }
@@ -140,6 +169,7 @@
 
 </body>
 </html>
+
 
 
 
