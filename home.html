@@ -2,126 +2,143 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>MetaQuest</title>
+    <title>MetaQuest | Vídeos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
         body {
-            background: #ffffff;
-            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f0f2f5;
         }
 
-        /* TOPO */
-        .top-bar {
+        header {
+            background: #4b5cff;
+            color: #fff;
+            padding: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
         }
 
-        .logo {
-            background: #4b5cff;
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: bold;
+        header img {
+            width: 40px;
         }
 
-        .right-top {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .progress {
-            width: 120px;
-            height: 10px;
-            background: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #4b5cff, #00c6ff);
-            transition: width 0.3s;
-        }
-
-        .balance {
-            background: #4b5cff;
-            color: #fff;
-            padding: 6px 10px;
+        header button {
+            background: #fff;
+            color: #4b5cff;
+            border: none;
+            padding: 8px 14px;
             border-radius: 8px;
+            cursor: pointer;
             font-weight: bold;
         }
 
-        /* CONTEÚDO */
-        .content {
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
+        .feed {
+            max-width: 420px;
+            margin: 20px auto;
         }
 
-        .box {
-            width: 280px;
-            height: 160px;
-            border: 3px solid #333;
-            border-radius: 20px;
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        video {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .actions {
+            display: none;
+            justify-content: space-around;
+            padding: 12px;
+        }
+
+        .actions button {
+            width: 45%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
             cursor: pointer;
+        }
+
+        .like {
+            background: #4b5cff;
+            color: #fff;
+        }
+
+        .dislike {
+            background: #e4e6eb;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- TOPO -->
-    <div class="top-bar">
-        <div class="logo">META</div>
+<header>
+    <img src="logo.png" alt="MetaQuest">
+    <button onclick="logout()">Sair</button>
+</header>
 
-        <div class="right-top">
-            <div class="progress">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
+<div class="feed">
 
-            <div class="balance">
-                $ <span id="saldo">0</span>
-            </div>
+    <!-- VIDEO 1 -->
+    <div class="card">
+        <video src="video1.mp4" controls onended="showActions(this)"></video>
+        <div class="actions">
+            <button class="like" onclick="like(this)">Curtir 👍</button>
+            <button class="dislike" onclick="dislike(this)">Não curtir 👎</button>
         </div>
     </div>
 
-    <!-- CONTEÚDO -->
-    <div class="content">
-        <div class="box" onclick="ganharSaldo()"></div>
-        <div class="box" onclick="ganharSaldo()"></div>
+    <!-- VIDEO 2 -->
+    <div class="card">
+        <video src="video2.mp4" controls onended="showActions(this)"></video>
+        <div class="actions">
+            <button class="like" onclick="like(this)">Curtir 👍</button>
+            <button class="dislike" onclick="dislike(this)">Não curtir 👎</button>
+        </div>
     </div>
 
-    <script>
-        let saldo = 0;
-        let progresso = 0;
+</div>
 
-        function ganharSaldo() {
-            saldo += 1;
-            progresso += 10;
+<script>
+    // PROTEÇÃO DE LOGIN
+    if (!localStorage.getItem("logado")) {
+        window.location.href = "index.html";
+    }
 
-            if (progresso > 100) {
-                progresso = 100;
-            }
+    function logout() {
+        localStorage.removeItem("logado");
+        window.location.href = "index.html";
+    }
 
-            document.getElementById("saldo").innerText = saldo;
-            document.getElementById("progressBar").style.width = progresso + "%";
-        }
-    </script>
+    function showActions(video) {
+        const actions = video.parentElement.querySelector(".actions");
+        actions.style.display = "flex";
+    }
+
+    function like(btn) {
+        alert("Você curtiu o vídeo 👍");
+        btn.closest(".card").style.display = "none";
+    }
+
+    function dislike(btn) {
+        alert("Você não curtiu o vídeo 👎");
+        btn.closest(".card").style.display = "none";
+    }
+</script>
 
 </body>
 </html>
+
 
